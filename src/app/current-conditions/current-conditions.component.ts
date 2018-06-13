@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State} from '../reducers';
+import {selectCurrentConditionsList, selectZipcodeList, State} from '../reducers';
 import {WeatherService} from '../weather.service';
 import {RemoveZipcode} from '../actions/zipcode.actions';
 
@@ -16,11 +16,11 @@ export class CurrentConditionsComponent {
     currentConditions: Map<string, any>;
 
     constructor(private store: Store<State>, public weatherService: WeatherService) {
-        store.select(state => state.zipcodes)
-            .subscribe(zips => this.zipcodes = zips.zipcodes);
+        store.select(selectZipcodeList)
+            .subscribe(zips => this.zipcodes = zips);
 
-        store.select(state => state.currentConditions)
-            .subscribe(conditions => this.currentConditions = conditions.currentConditions);
+        store.select(selectCurrentConditionsList)
+            .subscribe(conditions => this.currentConditions = conditions);
     }
 
     getConditions(zip: string) {
