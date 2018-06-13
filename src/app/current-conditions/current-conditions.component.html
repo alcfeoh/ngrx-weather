@@ -14,7 +14,7 @@
       </p>
     </div>
     <div>
-      <span class="close">&times;</span>
+      <span class="close" (click)="removeZip(zip)">&times;</span>
       <img [src]="weatherService.getWeatherIcon(getConditions(zip)?.weather[0].id)">
     </div>
   </div>

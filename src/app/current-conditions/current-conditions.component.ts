@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {State} from '../reducers';
 import {WeatherService} from '../weather.service';
+import {RemoveZipcode} from '../actions/zipcode.actions';
 
 @Component({
   selector: 'app-current-conditions',
@@ -25,4 +26,9 @@ export class CurrentConditionsComponent {
     getConditions(zip: string) {
         return this.currentConditions.get(zip);
     }
+
+    removeZip(zip: string) {
+        this.store.dispatch(new RemoveZipcode(zip));
+    }
+
 }
