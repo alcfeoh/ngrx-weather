@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Store} from '@ngrx/store';
+import {State} from '../reducers';
 
 @Component({
   selector: 'app-current-conditions',
@@ -9,8 +11,8 @@ export class CurrentConditionsComponent {
 
     zipcodes: Array<String>;
 
-    constructor() {
-
+    constructor(private store: Store<State>) {
+        store.select(state => state.zipcodes)
+            .subscribe(zips => this.zipcodes = zips.zipcodes);
     }
-    
 }
