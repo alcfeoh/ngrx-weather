@@ -1,15 +1,15 @@
 import {ZipcodeActions, ZipcodeActionTypes} from '../actions/zipcode.actions';
 
 
-export interface State {
+export interface ZipcodeState {
     zipcodes: Array<string>
 }
 
-export const initialState: State = {
+export const initialState: ZipcodeState = {
     zipcodes: []
 };
 
-export function reducer(state = initialState, action: ZipcodeActions): State {
+export function zipcodeReducer(state = initialState, action: ZipcodeActions): ZipcodeState {
   switch (action.type) {
       case ZipcodeActionTypes.AddZipcode:
         return {...state, zipcodes: [...state.zipcodes, action.zipcode]};
