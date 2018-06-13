@@ -1,8 +1,5 @@
-import { Component } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {selectCurrentConditionsList, selectZipcodeList, State} from '../reducers';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {WeatherService} from '../weather.service';
-import {RemoveZipcode} from '../actions/zipcode.actions';
 
 @Component({
   selector: 'app-current-conditions',
@@ -11,24 +8,16 @@ import {RemoveZipcode} from '../actions/zipcode.actions';
 })
 export class CurrentConditionsComponent {
 
+    @Input()
     zipcodes: Array<String>;
-
+    @Input()
     currentConditions: Map<string, any>;
+    @Output()
+    zipRemoved = new EventEmitter<string>();
 
-    constructor(private store: Store<State>, public weatherService: WeatherService) {
-        store.select(selectZipcodeList)
-            .subscribe(zips => this.zipcodes = zips);
-
-        store.select(selectCurrentConditionsList)
-            .subscribe(conditions => this.currentConditions = conditions);
-    }
+    constructor(public weatherService: WeatherService){ }
 
     getConditions(zip: string) {
         return this.currentConditions.get(zip);
     }
-
-    removeZip(zip: string) {
-        this.store.dispatch(new RemoveZipcode(zip));
-    }
-
 }

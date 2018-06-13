@@ -1,7 +1,4 @@
-import { Component } from '@angular/core';
-import {Store} from '@ngrx/store';
-import {State} from '../reducers';
-import {AddZipcode} from '../actions/zipcode.actions';
+import {Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-zipcode-entry',
@@ -9,10 +6,8 @@ import {AddZipcode} from '../actions/zipcode.actions';
 })
 export class ZipcodeEntryComponent {
 
-  constructor(private store: Store<State>) { }
+    @Output()
+    zipAdded = new EventEmitter<string>();
 
-  addLocation(zipcode : string){
-      this.store.dispatch(new AddZipcode(zipcode));
-  }
 
 }
