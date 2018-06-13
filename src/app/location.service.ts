@@ -8,20 +8,18 @@ export class LocationService {
 
   locations : string[] = [];
 
-  constructor(private weatherService : WeatherService) {
+  constructor() {
 
   }
 
   addLocation(zipcode : string){
     this.locations.push(zipcode);
-    this.weatherService.addCurrentConditions(zipcode);
   }
 
   removeLocation(zipcode : string){
     let index = this.locations.indexOf(zipcode);
     if (index !== -1){
       this.locations.splice(index, 1);
-      this.weatherService.removeCurrentConditions(zipcode);
     }
   }
 
