@@ -9,17 +9,20 @@ import { environment } from '../../environments/environment';
 import {zipcodeReducer, ZipcodeState} from './zip-codes.reducer';
 import {currentConditionsReducer, CurrentConditionsState} from './current-conditions.reducer';
 import {routerReducer, RouterReducerState} from '@ngrx/router-store';
+import {forecastReducer, ForecastState} from './forecast.reducer';
 
 export interface State {
   zipcodes: ZipcodeState,
   currentConditions: CurrentConditionsState
-  router: RouterReducerState
+  router: RouterReducerState,
+  forecast: ForecastState
 }
 
 export const reducers: ActionReducerMap<State> = {
   zipcodes: zipcodeReducer,
   currentConditions: currentConditionsReducer,
-  router: routerReducer
+  router: routerReducer,
+  forecast: forecastReducer
 };
 
 
@@ -32,3 +35,8 @@ export const selectZipcodeList = createSelector(selectZipcodeState, (state: Zipc
 export const selectCurrentConditionsState = (state: State) => state.currentConditions;
 
 export const selectCurrentConditionsList = createSelector(selectCurrentConditionsState, (state: CurrentConditionsState) => state.currentConditions);
+
+export const selectForecastState = (state: State) => state.forecast;
+
+export const selectForecast = createSelector(selectForecastState,
+    (state: ForecastState) => state.forecast);

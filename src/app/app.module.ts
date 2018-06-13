@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { CurrentConditionsEffects } from './effects/current-conditions.effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {ForecastEffects} from './effects/forecast.effects';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import {StoreRouterConnectingModule} from '@ngrx/router-store';
     HttpClientModule,
     RouterModule,
     routing,
-    EffectsModule.forRoot([CurrentConditionsEffects]),
+    EffectsModule.forRoot([CurrentConditionsEffects, ForecastEffects]),
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     StoreRouterConnectingModule.forRoot({stateKey: 'router'})
